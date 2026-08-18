@@ -115,7 +115,11 @@ def _extract_model(title: str) -> tuple[str, str] | None:
         # explicit PA number in the title there's no reliable way to tell
         # them apart, so the model is published generically.
         return MAKE, "Vagabond"
-    if re.search(r"\bcub\b", normalized):
+    if "piper" in normalized and re.search(r"\bcub\b", normalized):
+        # A bare "Cub" mention is too generic to trust on its own - lots of
+        # homebuilts and other kit makers (Wag-Aero, "custom built STOL
+        # cub", etc.) use "Cub" as a nickname without being a real Piper.
+        # Only accept it when the title also explicitly says "Piper".
         return MAKE, "Cub"
     return None
 
