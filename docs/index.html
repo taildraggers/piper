@@ -28,11 +28,37 @@
     .updated { color: #9aa0a6; }
     .disclaimer { color: #7a7f85; }
   }
+  /* Below phone width, each row becomes a card: title + price on one line,
+     location / date / site on a second line. Wider viewports (tablets,
+     desktop embeds) keep the table exactly as it is above. */
+  @media (max-width: 600px) {
+    table { display: block; }
+    thead { display: none; }
+    tbody { display: flex; flex-direction: column; gap: 0.6rem; }
+    tr { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 0.3rem;
+          column-gap: 0.5rem; border: 1px solid #e2e2e2; border-radius: 8px;
+          padding: 0.7rem 0.8rem; }
+    tr:hover { background: none; }
+    td { display: block; border: none; padding: 0; }
+    td:nth-child(1) { flex: 1 1 auto; min-width: 0; order: 1; font-weight: 600; font-size: 0.92rem; }
+    td:nth-child(2) { flex: 0 0 auto; order: 2; margin-left: auto; font-weight: 600;
+                        font-variant-numeric: tabular-nums; white-space: nowrap; }
+    td:nth-child(3) { order: 3; flex-basis: 100%; font-size: 0.78rem; color: #666; }
+    td:nth-child(4) { order: 4; font-size: 0.78rem; color: #666; }
+    td:nth-child(4)::before { content: "\00B7\0020"; }
+    td:nth-child(5) { order: 5; font-size: 0.78rem; color: #666; }
+    td:nth-child(5)::before { content: "\00B7\0020"; }
+    td.empty { font-weight: 400; font-size: 0.9rem; }
+  }
+  @media (prefers-color-scheme: dark) and (max-width: 600px) {
+    tr { border-color: #2a2d31; }
+    td:nth-child(3), td:nth-child(4), td:nth-child(5) { color: #9aa0a6; }
+  }
 </style>
 </head>
 <body>
   <h1>Other Piper Ads on the Web</h1>
-  <div class="updated">Updated August 18, 2026 21:35 UTC &middot; 42 listing(s)</div>
+  <div class="updated">Updated August 18, 2026 22:38 UTC &middot; 39 listing(s)</div>
   <div class="disclaimer">External listings are provided for informational purposes. Taildraggers.com is not affiliated with or endorsed by the originating listing sites. Listing information remains the responsibility of the original publisher. Clicking an external listing will take you to the source website.</div>
   <table>
     <thead>
@@ -40,12 +66,10 @@
     </thead>
     <tbody>
         <tr><td><a href="https://www.barnstormers.com/classified-2060966-1955-PA-18-180.html" target="_blank" rel="noopener noreferrer">1955 Piper PA-18</a></td><td>$240,000</td><td>Moorhead, MN</td><td>August 17, 2026</td><td>Barnstormers.com</td></tr>
-        <tr><td><a href="https://www.barnstormers.com/classified-2066912-wag-aero-cub-project-0200-con.html" target="_blank" rel="noopener noreferrer">Piper Cub</a></td><td>Contact for price</td><td>Slickville, PA</td><td>August 15, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2061331-Alaska-Ready-Super-Cub.html" target="_blank" rel="noopener noreferrer">Piper PA-18</a></td><td>$125,000</td><td>International Falls, MN</td><td>August 15, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2055012-1977-Piper-Super-Cub.html" target="_blank" rel="noopener noreferrer">1977 Piper PA-18</a></td><td>$219,000</td><td>Grand Junction, CO</td><td>August 14, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2066826-PA2220-Pacer-160hp.html" target="_blank" rel="noopener noreferrer">Piper PA-20</a></td><td>$59,000</td><td>Scappoose, OR</td><td>August 14, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2066634-1941-piper-J5-A-125HP-O-290D.html" target="_blank" rel="noopener noreferrer">1941 Piper J-5</a></td><td>$45,000</td><td>Montgomery, TX</td><td>August 13, 2026</td><td>Barnstormers.com</td></tr>
-        <tr><td><a href="https://www.barnstormers.com/classified-2037330-CUSTOM-BUILT-STOL-CUB.html" target="_blank" rel="noopener noreferrer">Piper Cub</a></td><td>$159,000</td><td>Carefree, AZ</td><td>August 13, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-1922516-Highly-modified-90HP-J-3.html" target="_blank" rel="noopener noreferrer">Piper J-3</a></td><td>$59,000</td><td>Sebastopol, CA</td><td>August 13, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2066532-Piper-Pacer-PA2220-150.html" target="_blank" rel="noopener noreferrer">Piper PA-20</a></td><td>$74,000</td><td>Evansville, IN</td><td>August 13, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2059432-1948-Piper-PA-17-Vagabond.html" target="_blank" rel="noopener noreferrer">1948 Piper PA-17</a></td><td>$46,000</td><td>Lincoln, CA</td><td>August 12, 2026</td><td>Barnstormers.com</td></tr>
@@ -67,7 +91,6 @@
         <tr><td><a href="https://www.barnstormers.com/classified-1993682-1941-Piper-Cub-J5A.html" target="_blank" rel="noopener noreferrer">1941 Piper Cub</a></td><td>Contact for price</td><td>Spring Valley, CA</td><td>August 2, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2063663-PA-17-project.html" target="_blank" rel="noopener noreferrer">Piper PA-17</a></td><td>$13,000</td><td>Gilford, NH</td><td>July 31, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2053448-Piper-Cub-J3C-65.html" target="_blank" rel="noopener noreferrer">Piper Cub</a></td><td>$35,000</td><td>Alpine, TX</td><td>July 30, 2026</td><td>Barnstormers.com</td></tr>
-        <tr><td><a href="https://www.barnstormers.com/classified-2063193-1940-J3C-CUB.html" target="_blank" rel="noopener noreferrer">1940 Piper Cub</a></td><td>$60,000</td><td>Troy, OH</td><td>July 29, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2036593-1946-Piper-J-3-C65-CA-Cub.html" target="_blank" rel="noopener noreferrer">1946 Piper J-3</a></td><td>$55,000</td><td>Ca, CA</td><td>July 29, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2063324-1946-Piper-PA-11-Cub-Special!.html" target="_blank" rel="noopener noreferrer">1946 Piper PA-11</a></td><td>$77,500</td><td>Blair, NE</td><td>July 29, 2026</td><td>Barnstormers.com</td></tr>
         <tr><td><a href="https://www.barnstormers.com/classified-2057379-Piper-PA-18-105-SPECIAL.html" target="_blank" rel="noopener noreferrer">Piper PA-18</a></td><td>$179,900</td><td>Moose Lake, MN</td><td>July 29, 2026</td><td>Barnstormers.com</td></tr>
