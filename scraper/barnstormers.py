@@ -13,7 +13,7 @@ approach used there.
 from __future__ import annotations
 
 import re
-from urllib.parse import unquote, urljoin
+from urllib.parse import quote, unquote, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -143,17 +143,20 @@ def _find_listing_links(html: str) -> set[str]:
     return links
 
 
-def _find_next_page_url(html: str, current_url: str) -> str | None:
-    """Find a "next page" link on a category listing page, if any."""
-    soup = BeautifulSoup(html, "lxml")
-    for a in soup.find_all("a", href=True):
-        text = a.get_text(strip=True).lower()
-        rel = a.get("rel") or []
-        if text in ("next", "next »", "»", "next page", ">") or "next" in rel:
-            candidate = urljoin(current_url, a["href"])
-            if candidate != current_url:
-                return candidate
-    return None
+def _page_url(category_url: str, page: int) -> str:
+    """Build a category page's URL directly.
+
+    Barnstormers' category pager renders as page-number buttons with no
+    "Next" text or rel="next" attribute for a link-following heuristic to
+    find (confirmed on the companion Van's RV, Stearman, Waco, Pitts,
+    Taylorcraft, Swift, and Beech repos, where that approach silently
+    stopped after page 1) - so each page's URL is built from the known
+    ?seocategory=<url-encoded-path>&page=<n> pattern instead.
+    """
+    if page <= 1:
+        return category_url
+    path = urlparse(category_url).path
+    return f"{category_url}?seocategory={quote(path, safe='')}&page={page}"
 
 
 def _debug_dump_hrefs(html: str, limit: int = 25) -> None:
@@ -206,8 +209,8 @@ def scrape() -> list[Listing]:
 
     for category_url in CATEGORY_URLS:
         seen_this_category: set[str] = set()
-        url = category_url
         for page in range(1, MAX_PAGES + 1):
+            url = _page_url(category_url, page)
             html = fetch(url)
             if not html:
                 break
@@ -217,10 +220,8 @@ def scrape() -> list[Listing]:
             if page == 1 and not links:
                 _debug_dump_hrefs(html)
             seen_this_category |= links
-            next_url = _find_next_page_url(html, url)
-            if not next_url or not new_links:
+            if not new_links:
                 break
-            url = next_url
         print(f"  [{category_url}] {len(seen_this_category)} listings total")
         all_links |= seen_this_category
 
