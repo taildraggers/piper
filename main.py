@@ -14,9 +14,14 @@ OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "docs", "index.html")
 PAGE_TITLE = "Other Piper Ads on the Web"
 
 # Sites that block automated scraping, but are still worth sending visitors
-# to directly via a pre-filled search link.
+# to directly via a pre-filled search link. Trade-A-Plane's search supports
+# filtering by model/model_group, so instead of one bare "piper cub" link,
+# each classic Cub-family model this repo tracks gets its own button.
 EXTERNAL_SEARCH_LINKS = [
-    ("Trade-A-Plane", "https://www.trade-a-plane.com/filtered/search?s-type=aircraft&s-keyword-search=piper%20cub&s-original-search=piper%20cub"),
+    ("Trade-A-Plane: Piper J-3", "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&model_group=PIPER+J+SERIES&s-type=aircraft"),
+    ("Trade-A-Plane: Piper PA-12", "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&model=PA-12+SUPER+CRUISER&s-type=aircraft"),
+    ("Trade-A-Plane: Piper PA-18", "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&model=PA-18+SUPER+CUB&s-type=aircraft"),
+    ("Trade-A-Plane: Piper Super Cub", "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&model_group=PIPER+SUPER+CUB+SERIES&s-type=aircraft"),
     ("Controller", "https://www.controller.com/listings?keywords=piper%20cub"),
     ("ASO", "https://aso.com/search?q=Piper%20Cub"),
 ]
